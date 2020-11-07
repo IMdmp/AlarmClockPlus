@@ -6,6 +6,10 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                    .setAction("Action"
+                    ) {
+                        supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()
+                        ?.navigate(R.id.action_FirstFragment_to_SecondFragment)
+                    }.show()
         }
     }
 
